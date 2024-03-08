@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  rabbit-app:
+    container_name: rabbit-app
+    image: 'rabbitmq:3-management'
+    ports:
+      - '${FORWARD_RABBIT_PORT:-15673}:15672'
+      - '5673:5672'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+  app:
+    build:
+      context: .
+      dockerfile: infra/Dockerfile
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8001:80"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
