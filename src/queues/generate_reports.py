@@ -1,3 +1,4 @@
+import os
 from dao.avaliations import AvaliationsDAO
 from dao.reports import ReportsDAO
 from helpers.dates import get_first_and_last_day_of_month
@@ -14,6 +15,7 @@ def generate_reports(message):
         reports_dao.update_report_status_and_url(r['id'], url)
 
 def create_report(query):
+    reports_path = os.getenv('REPORTS_PATH', 'default_folder_path')
     first_day, last_day = get_first_and_last_day_of_month(query['period'])
     avaliations_dao = AvaliationsDAO()
     csv_generator = CsvGenerator()
@@ -24,7 +26,7 @@ def create_report(query):
         last_day
     )
 
-    report_id = query['userId'] + "_" + query['period'].replace("/", "_")
+    report_id = reports_path + '/' + query['userId'] + "_" + query['period'].replace("/", "_")
     csv_generator.generate(report_id, results)
 
     return f"{report_id}.csv"
