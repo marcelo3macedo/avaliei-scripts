@@ -1,4 +1,4 @@
-import uuid
+import uuid, logging
 from modules.mySqlDB import MySQLDB
 
 class KpisDAO:
