@@ -1,4 +1,4 @@
-from queues.feeder import feed_update_user_ratings, feed_generate_reports
+from queues.feeder import feed_update_user_ratings, feed_generate_reports, feed_check_subscriptions
 from queues.update_user_ratings import update_user_ratings
 from queues.generate_reports import generate_reports
 from queues.check_subscriptions import check_subscriptions
@@ -18,6 +18,10 @@ schedules = {
     },
     'generate_reports': { 
         'function': feed_generate_reports,
+        'frequency': 3600
+    },
+    'check_subscriptions': { 
+        'function': feed_check_subscriptions,
         'frequency': 3600
     }
 }
