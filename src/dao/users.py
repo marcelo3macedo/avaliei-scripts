@@ -4,6 +4,14 @@ class UsersDAO:
     def __init__(self):
         self.db = MySQLDB()
 
+    def fetch_users(self):
+        select_query = """
+          SELECT id, name, email, validated, profile
+            FROM users
+        """
+        
+        return self.db.fetch_data(select_query)
+
     def update_user_profile(self, email):
         """
         Update user profile

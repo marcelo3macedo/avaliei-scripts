@@ -11,3 +11,6 @@ def feed_check_subscriptions():
 
 def feed_remove_access():
     send_message('remove_access', 'processing')
+
+def feed_get_metrics():
+    send_message('get_metrics', 'processing')

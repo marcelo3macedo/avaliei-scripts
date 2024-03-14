@@ -2,3 +2,5 @@ pika
 python-dotenv
 mysql-connector-python
 stripe
+gspread
+oauth2client
